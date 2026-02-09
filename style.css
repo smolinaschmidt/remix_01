@@ -1,0 +1,816 @@
+
+* { box-sizing: border-box; }
+
+body { 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+    background: white; 
+    color: black; 
+    height: 100vh; 
+    width: 100vw; 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: row;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul, li { list-style: none; padding: 0; margin: 0; }
+hr { display: none; } 
+
+body.index { 
+    overflow-y: auto; 
+    padding: 9.6pt 48pt 24pt; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
+}
+
+body.index h1 { 
+    font-size: clamp(38.4pt, 7vw, 84pt); 
+    line-height: 0.95; 
+    margin-bottom: 4.2pt; 
+    margin-top: 0;
+    letter-spacing: -1.5pt; 
+    text-transform: uppercase; 
+    font-weight: 900;
+}
+
+body.index h2 { 
+    font-family: 'Courier New', monospace; 
+    color: #555; 
+    margin: 0 0 14.4pt; 
+    font-weight: normal; 
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: 14.4pt;
+}
+
+body.index .grid { 
+    display: grid; 
+    grid-template-columns: repeat(4, minmax(120pt, 1fr)); 
+    grid-template-rows: repeat(5, minmax(90pt, 1fr)); 
+    gap: 12pt; 
+    border-top: 3pt solid black; 
+    padding-top: 12pt; 
+    margin-bottom: 24pt; 
+}
+
+body.index .card { 
+    border: 0.75pt solid #ddd; 
+    padding: 12pt; 
+    transition: 0.2s; 
+    height: 120pt; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+
+body.index .card:hover { 
+    background: black; 
+    color: white; 
+    border-color: black; 
+    transform: translateY(-3.75pt); 
+    box-shadow: 3.75pt 3.75pt 0pt rgba(0,0,0,0.2); 
+}
+
+body.index .card a { 
+    text-decoration: none; 
+    color: inherit; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+}
+
+body.index .cat { 
+    font-size: 8.4pt; 
+    text-transform: uppercase; 
+    letter-spacing: 0.75pt; 
+    font-weight: bold; 
+}
+
+body.index .num { 
+    font-size: 30pt; 
+    font-weight: 900; 
+    align-self: flex-end; 
+}
+
+
+body.index .index-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10.8pt 0;
+    border-top: 1.5pt solid black;
+    background: white;
+    font-family: 'Courier New', monospace;
+    font-size: 12pt;
+    margin-top: auto;
+}
+
+
+main { 
+    width: 78%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+}
+
+.poem-nav {
+    position: fixed;
+    top: 18pt;
+    right: 0;
+    width: 22%;
+    padding: 0 18pt;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7.2pt;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9.6pt;
+    text-transform: uppercase;
+    letter-spacing: 0.24pt;
+    color: black;
+    text-align: left;
+    background: white;
+    z-index: 2;
+}
+
+.poem-nav a {
+    border: 0.75pt solid currentColor;
+    padding: 4.2pt 7.2pt;
+}
+
+.home-link {
+    position: fixed;
+    top: 18pt;
+    left: 24pt;
+    border: 0.75pt solid currentColor;
+    padding: 4.2pt 7.2pt;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9.6pt;
+    text-transform: uppercase;
+    letter-spacing: 0.24pt;
+    color: black;
+    z-index: 3;
+}
+
+#v5 .home-link,
+#v7 .home-link,
+#v11 .home-link {
+    color: white;
+    border-color: white;
+}
+
+.poem-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48pt;
+}
+
+#v5 .poem-container {
+    padding-top: 72pt;
+}
+
+aside.metadata {
+    width: 22%;
+    height: 100%;
+    padding: 18pt;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-family: inherit;
+    color: black;
+    text-align: left;
+    background: white;
+    border-left: 0.75pt solid black;
+    box-shadow: none;
+    text-shadow: none;
+    filter: none;
+    transform: none;
+    order: 2;
+}
+
+.rule-info { width: 100%; }
+
+.rule-info h3 {
+    margin: 0 0 12pt 0;
+    font-size: 15.6pt;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: normal;
+    color: inherit;
+    text-shadow: none;
+    filter: none;
+    transform: none;
+}
+
+.rule-info p {
+    margin: 0;
+    font-size: 16pt;
+    font-weight: normal;
+    line-height: 1.5;
+    font-family: 'Courier New', monospace;
+    text-transform: none;
+    letter-spacing: normal;
+    color: inherit;
+    text-shadow: none;
+    filter: none;
+    transform: none;
+}
+
+aside.metadata a,
+aside.metadata span {
+    font-family: 'Courier New', monospace;
+    font-size: 16pt;
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    color: inherit;
+    text-decoration: none;
+    text-shadow: none;
+    filter: none;
+    transform: none;
+}
+
+
+#v1 .poem-container {
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.25vh;
+}
+#v1 .poem-container p {
+    margin: 0;
+    line-height: 1.05;
+}
+#v1 .word {
+    font-family: 'Helvetica Neue', sans-serif;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-right: 4.8pt;
+}
+#v1 .len-1 { font-size: 7.2pt; font-weight: 300; }
+#v1 .len-2 { font-size: 9pt; font-weight: 300; }
+#v1 .len-3 { font-size: 11.4pt; font-weight: 400; }
+#v1 .len-4 { font-size: 13.2pt; font-weight: 500; }
+#v1 .len-5 { font-size: 15.6pt; font-weight: 600; }
+#v1 .len-6 { font-size: 18pt; font-weight: 700; }
+#v1 .len-7 { font-size: 21pt; font-weight: 800; }
+#v1 .len-8 { font-size: 24pt; font-weight: 900; }
+#v1 .len-9 { font-size: 26.4pt; font-weight: 900; }
+#v1 .len-10 { font-size: 28.8pt; font-weight: 900; }
+#v1 .len-11 { font-size: 31.2pt; font-weight: 900; }
+#v1 .len-12 { font-size: 33.6pt; font-weight: 900; }
+
+#v2 main { background-color: white; align-items: center; }
+#v2 .poem-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 7.2pt 14.4pt;
+    padding: 36pt 48pt;
+    width: 100%;
+    text-align: center;
+}
+#v2 .poem-container p {
+    margin: 0;
+    font-weight: 500;
+    line-height: 1;
+}
+#v2 .poem-container p:nth-child(1) { font-size: clamp(8.4pt, 1.2vh, 12pt); letter-spacing: 2.4pt; text-transform: uppercase; }
+#v2 .poem-container p:nth-child(2) { font-size: clamp(26.4pt, 5vh, 48pt); font-weight: 900; }
+#v2 .poem-container p:nth-child(3) { font-size: clamp(8.4pt, 1.2vh, 12pt); }
+#v2 .poem-container p:nth-child(4) { font-size: clamp(14.4pt, 2.4vh, 24pt); font-weight: 700; text-transform: uppercase; }
+#v2 .poem-container p:nth-child(5) { font-size: clamp(9.6pt, 1.3vh, 13.2pt); letter-spacing: 3.6pt; text-transform: uppercase; }
+#v2 .poem-container p:nth-child(6) { font-size: clamp(19.2pt, 3.2vh, 31.2pt); font-weight: 800; }
+#v2 .poem-container p:nth-child(7) { font-size: clamp(9.6pt, 1.3vh, 13.2pt); }
+#v2 .poem-container p:nth-child(8) { font-size: clamp(9pt, 1.2vh, 12pt); }
+#v2 .poem-container p:nth-child(9) { font-size: clamp(13.2pt, 2.2vh, 21.6pt); font-weight: 700; }
+#v2 .poem-container p:nth-child(10) { font-size: clamp(8.4pt, 1.2vh, 12pt); }
+#v2 .poem-container p:nth-child(11) { font-size: clamp(16.8pt, 2.6vh, 26.4pt); font-weight: 800; }
+#v2 .poem-container p:nth-child(12) { font-size: clamp(9pt, 1.2vh, 12pt); }
+#v2 .poem-container p:nth-child(13) { font-size: clamp(24pt, 4.2vh, 40.8pt); font-weight: 900; }
+#v2 .poem-container p:nth-child(14) { font-size: clamp(9pt, 1.2vh, 12pt); }
+#v2 .poem-container p:nth-child(15) { font-size: clamp(14.4pt, 2.4vh, 24pt); font-weight: 700; }
+#v2 .poem-container p:nth-child(16) { font-size: clamp(9.6pt, 1.3vh, 13.2pt); }
+#v2 .poem-container p:nth-child(17) { font-size: clamp(9pt, 1.2vh, 12pt); }
+#v2 .poem-container p:nth-child(18) { font-size: clamp(19.2pt, 3.2vh, 31.2pt); font-weight: 900; text-transform: uppercase; }
+#v2 .poem-container p:nth-child(19) { font-size: clamp(9pt, 1.2vh, 12pt); }
+#v2 .poem-container p:nth-child(20) { font-size: clamp(9.6pt, 1.3vh, 13.2pt); }
+#v2 .poem-container p:nth-child(21) { font-size: clamp(19.2pt, 3.2vh, 31.2pt); font-weight: 900; }
+#v2 .poem-container p:nth-child(22) { font-size: clamp(8.4pt, 1.2vh, 12pt); }
+
+#v3 .poem-container {
+    display: block;
+    column-count: 2;
+    column-gap: 48pt;
+    column-rule: 0.75pt solid black;
+    height: auto;
+    max-width: 675pt;
+}
+#v3 .poem-container p {
+    font-family: 'Georgia', serif;
+    font-size: clamp(11.4pt, 1.6vh, 14.4pt);
+    line-height: 1.3;
+    margin-bottom: 0.8vh;
+    break-inside: avoid;
+    text-align: left;
+}
+#v3 .vowel {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    font-size: 19.2pt;
+    text-transform: uppercase;
+}
+
+#v4 .poem-container { align-items: center; justify-content: center; gap: 0; }
+#v4 .poem-container p {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    font-size: clamp(14.4pt, 2.4vh, 22.8pt);
+    text-align: center;
+    margin: 0;
+    padding: 0.2vh 0;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: default;
+    border-bottom: 0.75pt solid transparent;
+}
+#v4 .poem-container p:hover {
+    font-size: clamp(28.8pt, 5.2vh, 45.6pt);
+    font-weight: 900;
+    border-bottom: 2.25pt solid black;
+    letter-spacing: -0.75pt;
+    padding: 1vh 0;
+}
+
+#v5 main { background: #0e0e0e; color: #e6e6e6; }
+#v5 .poem-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 30pt 36pt;
+    overflow: hidden;
+}
+#v5 .poem-container p {
+    position: absolute;
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: 0.24pt;
+    color: #e6e6e6;
+    text-transform: uppercase;
+}
+#v5 .poem-container p:nth-child(1)  { top: 6%;  left: 8%;  font-size: clamp(9pt, 1.3vw, 12pt); }
+#v5 .poem-container p:nth-child(2)  { top: 10%; left: 12%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(3)  { top: 14%; left: 16%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(4)  { top: 18%; left: 22%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(5)  { top: 22%; left: 28%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(6)  { top: 26%; left: 34%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(7)  { top: 30%; left: 40%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(8)  { top: 34%; left: 46%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(9)  { top: 38%; left: 52%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(10) { top: 42%; left: 58%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(11) { top: 46%; left: 64%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(12) { top: 50%; left: 58%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(13) { top: 54%; left: 52%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(14) { top: 58%; left: 46%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(15) { top: 62%; left: 40%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(16) { top: 66%; left: 34%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(17) { top: 70%; left: 28%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(18) { top: 74%; left: 22%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(19) { top: 78%; left: 16%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(20) { top: 82%; left: 10%; font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(21) { top: 86%; left: 6%;  font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+#v5 .poem-container p:nth-child(22) { top: 90%; left: 4%;  font-size: clamp(9.6pt, 1.4vw, 13.2pt); }
+
+#v6 .poem-container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 19.2pt 48pt 31.2pt;
+    gap: 3.6pt;
+    transform: translateY(12pt);
+}
+#v6 .poem-container p {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: clamp(9.36pt, 1.35vh, 12pt);
+    line-height: 1.2;
+    letter-spacing: 0.36pt;
+    max-width: 36ch;
+}
+#v6 .poem-container p.center {
+    text-align: center;
+    align-self: center;
+}
+#v6 .poem-container p.right {
+    text-align: right;
+    align-self: flex-end;
+    margin-right: 24pt;
+}
+#v6 .poem-container p.left {
+    text-align: left;
+    align-self: flex-start;
+    margin-left: 24pt;
+}
+#v6 .poem-container p.spacer-top {
+    margin-top: 24pt;
+}
+#v6 .poem-container p.spacer-bottom {
+    margin-bottom: 16.8pt;
+}
+
+#v7 { background: black; color: white; }
+#v7 main { background: black; }
+#v7 .poem-container {
+    justify-content: center;
+    align-items: center;
+    padding: 30pt 48pt;
+    text-align: center;
+    max-width: 34ch;
+    margin: 0 auto;
+    gap: 1.8pt;
+}
+#v7 .poem-container p {
+    margin: 0 0 1.8pt 0;
+    font-family: 'Georgia', serif;
+    font-size: clamp(10.2pt, 1.45vh, 12.6pt);
+    line-height: 1.25;
+    letter-spacing: 0.12pt;
+}
+
+#v8 .poem-container { position: relative; padding: 36pt 48pt; }
+#v8 .poem-container p {
+    position: absolute;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: clamp(7.2pt, 1vh, 10.8pt);
+    letter-spacing: 0.96pt;
+    margin: 0;
+}
+#v8 .poem-container p:nth-child(1) { top: 8%; left: 10%; }
+#v8 .poem-container p:nth-child(2) { top: 12%; left: 42%; }
+#v8 .poem-container p:nth-child(3) { top: 18%; left: 68%; }
+#v8 .poem-container p:nth-child(4) { top: 28%; left: 12%; }
+#v8 .poem-container p:nth-child(5) { top: 32%; left: 50%; }
+#v8 .poem-container p:nth-child(6) { top: 36%; left: 74%; }
+#v8 .poem-container p:nth-child(7) { top: 46%; left: 8%; }
+#v8 .poem-container p:nth-child(8) { top: 52%; left: 38%; }
+#v8 .poem-container p:nth-child(9) { top: 56%; left: 66%; }
+#v8 .poem-container p:nth-child(10) { top: 64%; left: 14%; }
+#v8 .poem-container p:nth-child(11) { top: 68%; left: 48%; }
+#v8 .poem-container p:nth-child(12) { top: 72%; left: 72%; }
+#v8 .poem-container p:nth-child(13) { top: 78%; left: 20%; }
+#v8 .poem-container p:nth-child(14) { top: 82%; left: 56%; }
+#v8 .poem-container p:nth-child(15) { top: 86%; left: 76%; }
+#v8 .poem-container p:nth-child(16) { top: 16%; left: 22%; }
+#v8 .poem-container p:nth-child(17) { top: 24%; left: 58%; }
+#v8 .poem-container p:nth-child(18) { top: 40%; left: 30%; }
+#v8 .poem-container p:nth-child(19) { top: 44%; left: 58%; }
+#v8 .poem-container p:nth-child(20) { top: 60%; left: 44%; }
+#v8 .poem-container p:nth-child(21) { top: 70%; left: 30%; }
+#v8 .poem-container p:nth-child(22) { top: 90%; left: 50%; }
+
+
+#v9 .poem-container {
+    text-align: center;
+    max-width: 615pt;
+    padding: 72pt 48pt;
+    justify-content: center;
+}
+#v9 .poem-container p {
+    display: block;
+    font-size: clamp(12pt, 1.8vh, 15.6pt);
+    line-height: 1.3;
+    color: transparent;
+    text-shadow: 0 0 9pt rgba(0,0,0,0.5);
+    transition: all 0.5s ease;
+    margin: 0.4vh 0;
+    cursor: crosshair;
+}
+#v9 .poem-container p:hover { text-shadow: 0 0 0 black; }
+
+#v10 .poem-container { display: block; max-width: 525pt; margin: 0 auto; margin-top: 10vh; }
+#v10 .poem-container p {
+    display: inline;
+    background: black;
+    color: black; 
+    line-height: 2.2;
+    padding: 1.5pt 0;
+    margin-right: 3.75pt;
+    box-shadow: 3pt 0 0 black, -3pt 0 0 black;
+    font-family: 'Courier New', monospace;
+    font-size: 13.2pt;
+    cursor: help;
+}
+#v10 .poem-container p:hover { background: transparent; color: black; outline: 1.5pt solid black; box-shadow: none; }
+
+#v11 { background-color: #050505; }
+#v11 main { background-color: #050505; }
+#v11 .poem-container { text-align: center; justify-content: center; padding: 72pt 48pt; }
+#v11 .poem-container p {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 900;
+    font-size: clamp(12pt, 1.8vh, 15.6pt);
+    margin: 0.4vh 0;
+    color: #050505;
+    -webkit-text-stroke: 0.75pt #333;
+    transition: 0.2s;
+    cursor: crosshair;
+}
+#v11 .poem-container p:hover {
+    color: white;
+    -webkit-text-stroke: 0;
+    text-shadow: 0 0 15pt white;
+}
+
+#v12 .poem-container { display: block; padding: 36pt 48pt; }
+#v12 .poem-container p {
+    font-size: clamp(10.2pt, 1.4vh, 13.2pt);
+    font-weight: 700;
+    padding: 3pt 0;
+    width: 60%;
+    margin-bottom: 1.1vh;
+    transition: margin 0.4s ease, text-align 0.4s ease;
+    cursor: pointer;
+    text-align: left;
+}
+#v12 .poem-container p:nth-child(1) { margin-left: 0%; word-spacing: 2.4pt; }
+#v12 .poem-container p:nth-child(2) { margin-left: 8%; word-spacing: 3pt; }
+#v12 .poem-container p:nth-child(3) { margin-left: 12%; word-spacing: 3.6pt; }
+#v12 .poem-container p:nth-child(4) { margin-left: 16%; word-spacing: 4.2pt; }
+#v12 .poem-container p:nth-child(5) { margin-left: 20%; word-spacing: 4.8pt; }
+#v12 .poem-container p:nth-child(6) { margin-left: 24%; word-spacing: 5.4pt; }
+#v12 .poem-container p:nth-child(7) { margin-left: 28%; word-spacing: 6pt; }
+#v12 .poem-container p:nth-child(8) { margin-left: 32%; word-spacing: 6.6pt; }
+#v12 .poem-container p:nth-child(9) { margin-left: 6%; word-spacing: 7.2pt; }
+#v12 .poem-container p:nth-child(10) { margin-left: 10%; word-spacing: 7.8pt; }
+#v12 .poem-container p:nth-child(11) { margin-left: 14%; word-spacing: 8.4pt; }
+#v12 .poem-container p:nth-child(12) { margin-left: 18%; word-spacing: 9pt; }
+#v12 .poem-container p:nth-child(13) { margin-left: 22%; word-spacing: 9.6pt; }
+#v12 .poem-container p:nth-child(14) { margin-left: 26%; word-spacing: 10.2pt; }
+#v12 .poem-container p:nth-child(15) { margin-left: 30%; word-spacing: 10.8pt; }
+#v12 .poem-container p:nth-child(16) { margin-left: 34%; word-spacing: 11.4pt; }
+#v12 .poem-container p:nth-child(17) { margin-left: 38%; word-spacing: 12pt; }
+#v12 .poem-container p:nth-child(18) { margin-left: 4%; word-spacing: 12.6pt; }
+#v12 .poem-container p:nth-child(19) { margin-left: 8%; word-spacing: 13.2pt; }
+#v12 .poem-container p:nth-child(20) { margin-left: 12%; word-spacing: 13.8pt; }
+#v12 .poem-container p:nth-child(21) { margin-left: 16%; word-spacing: 14.4pt; }
+#v12 .poem-container p:nth-child(22) { margin-left: 20%; word-spacing: 15pt; }
+#v12 .poem-container p.centered { margin-left: 22%; text-align: center; width: 56%; word-spacing: 4.8pt; }
+
+#v13 .poem-container { justify-content: space-between; padding: 72pt 48pt; }
+#v13 .poem-container p {
+    text-align: center;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: 800;
+    font-size: clamp(8.4pt, 1.1vh, 11.4pt);
+    text-transform: uppercase;
+    letter-spacing: 0.8vw;
+    margin: 0;
+    width: 100%;
+    white-space: nowrap;
+}
+
+#v14 .poem-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14.4pt 31.2pt;
+    align-content: center;
+    padding: 30pt 42pt;
+}
+#v14 .poem-container p {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(9pt, 1.2vh, 11.4pt);
+    text-align: left;
+    margin: 0;
+    letter-spacing: 1.92pt;
+    word-spacing: 7.2pt;
+}
+#v14 .poem-container p:nth-child(4n+1) { word-spacing: 3.6pt; letter-spacing: 1.2pt; margin-left: 0; }
+#v14 .poem-container p:nth-child(4n+2) { word-spacing: 10.8pt; letter-spacing: 2.16pt; margin-left: 6%; }
+#v14 .poem-container p:nth-child(4n+3) { word-spacing: 19.2pt; letter-spacing: 2.88pt; margin-left: 12%; }
+#v14 .poem-container p:nth-child(4n) { word-spacing: 26.4pt; letter-spacing: 3.6pt; margin-left: 18%; }
+
+#v15 .poem-container {
+    justify-content: center;
+    align-items: center;
+    padding: 36pt 48pt;
+}
+#v15 .poem-container p {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(11.4pt, 1.7vh, 14.4pt);
+    line-height: 1.6;
+    font-weight: 400;
+    color: black;
+    margin: 0.7vh 0;
+    text-align: center;
+    letter-spacing: 0.24pt;
+}
+
+#v16 .poem-container { display: block; padding: 36pt 48pt; }
+#v16 .poem-container p {
+    font-size: clamp(10.2pt, 1.4vh, 13.2pt);
+    font-weight: 700;
+    padding: 3pt 0;
+    width: 100%;
+    margin-bottom: 1.1vh;
+    text-align: left;
+}
+#v16 .poem-container p:nth-child(1) { word-spacing: 3.6pt; }
+#v16 .poem-container p:nth-child(2) { word-spacing: 6pt; }
+#v16 .poem-container p:nth-child(3) { word-spacing: 8.4pt; }
+#v16 .poem-container p:nth-child(4) { word-spacing: 10.8pt; }
+#v16 .poem-container p:nth-child(5) { word-spacing: 13.2pt; }
+#v16 .poem-container p:nth-child(6) { word-spacing: 15.6pt; }
+#v16 .poem-container p:nth-child(7) { word-spacing: 18pt; }
+#v16 .poem-container p:nth-child(8) { word-spacing: 20.4pt; }
+#v16 .poem-container p:nth-child(9) { word-spacing: 22.8pt; }
+#v16 .poem-container p:nth-child(10) { word-spacing: 25.2pt; }
+#v16 .poem-container p:nth-child(11) { word-spacing: 27.6pt; }
+#v16 .poem-container p:nth-child(12) { word-spacing: 30pt; }
+#v16 .poem-container p:nth-child(13) { word-spacing: 32.4pt; }
+#v16 .poem-container p:nth-child(14) { word-spacing: 34.8pt; }
+#v16 .poem-container p:nth-child(15) { word-spacing: 37.2pt; }
+#v16 .poem-container p:nth-child(16) { word-spacing: 39.6pt; }
+#v16 .poem-container p:nth-child(17) { word-spacing: 42pt; }
+#v16 .poem-container p:nth-child(18) { word-spacing: 44.4pt; }
+#v16 .poem-container p:nth-child(19) { word-spacing: 46.8pt; }
+#v16 .poem-container p:nth-child(20) { word-spacing: 49.2pt; }
+#v16 .poem-container p:nth-child(21) { word-spacing: 51.6pt; }
+#v16 .poem-container p:nth-child(22) { word-spacing: 54pt; }
+
+
+#v17 .poem-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 30pt 36pt;
+    text-align: center;
+    overflow: hidden;
+}
+#v17 .poem-container p {
+    position: relative;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: clamp(10.8pt, 2.2vh, 21.6pt);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.12pt;
+    max-width: 70ch;
+    transition: 0.2s;
+    transform-origin: center;
+    display: inline-block;
+    margin: -0.2vh 0;
+}
+#v17 .poem-container p:nth-of-type(1) { font-size: clamp(19.2pt, 5vw, 48pt); font-weight: 900; transform: rotate(-5deg) translateX(-10%); letter-spacing: -0.24pt; }
+#v17 .poem-container p:nth-of-type(2) { font-size: clamp(14.4pt, 3.6vw, 36pt); font-weight: 500; transform: rotate(3deg) translateX(9%); letter-spacing: 0.24pt; }
+#v17 .poem-container p:nth-of-type(3) { font-size: clamp(10.8pt, 2.4vw, 21.6pt); font-weight: 300; transform: rotate(-3deg) translateX(-12%); }
+#v17 .poem-container p:nth-of-type(4) { font-size: clamp(12pt, 2.8vw, 28.8pt); font-weight: 800; transform: rotate(4deg) translateX(12%); }
+#v17 .poem-container p:nth-of-type(5) { font-size: clamp(11.4pt, 2.2vw, 20.4pt); font-weight: 400; transform: rotate(-2deg) translateX(-6%); }
+#v17 .poem-container p:nth-of-type(6) { font-size: clamp(16.8pt, 4.4vw, 40.8pt); font-weight: 900; transform: rotate(2deg) translateX(8%); letter-spacing: -0.12pt; }
+#v17 .poem-container p:nth-of-type(7) { font-size: clamp(10.8pt, 2.2vw, 20.4pt); font-weight: 300; transform: rotate(-4deg) translateX(-14%); }
+#v17 .poem-container p:nth-of-type(8) { font-size: clamp(12pt, 2.6vw, 24pt); font-weight: 700; transform: rotate(4.5deg) translateX(14%); }
+#v17 .poem-container p:nth-of-type(9) { font-size: clamp(13.2pt, 3.2vw, 31.2pt); font-weight: 600; transform: rotate(-2.5deg) translateX(-8%); }
+#v17 .poem-container p:nth-of-type(10) { font-size: clamp(18pt, 4.8vw, 45.6pt); font-weight: 900; transform: rotate(3deg) translateX(10%); }
+#v17 .poem-container p:nth-of-type(11) { font-size: clamp(11.4pt, 2.2vw, 21.6pt); font-weight: 300; transform: rotate(-5deg) translateX(-12%); }
+#v17 .poem-container p:nth-of-type(12) { font-size: clamp(10.8pt, 2.1vw, 20.4pt); font-weight: 500; transform: rotate(4deg) translateX(11%); letter-spacing: 0.36pt; }
+#v17 .poem-container p:nth-of-type(13) { font-size: clamp(12pt, 2.8vw, 27.6pt); font-weight: 700; transform: rotate(-2deg) translateX(-6%); }
+#v17 .poem-container p:nth-of-type(14) { font-size: clamp(15.6pt, 4vw, 38.4pt); font-weight: 800; transform: rotate(2.5deg) translateX(9%); }
+#v17 .poem-container p:nth-of-type(15) { font-size: clamp(11.4pt, 2.2vw, 21.6pt); font-weight: 400; transform: rotate(-4deg) translateX(-13%); }
+#v17 .poem-container p:nth-of-type(16) { font-size: clamp(13.2pt, 3vw, 30pt); font-weight: 600; transform: rotate(5deg) translateX(13%); }
+#v17 .poem-container p:nth-of-type(17) { font-size: clamp(13.2pt, 3.2vw, 31.2pt); font-weight: 500; transform: rotate(-2.5deg) translateX(-7%); }
+#v17 .poem-container p:nth-of-type(18) { font-size: clamp(11.4pt, 2.2vw, 21.6pt); font-weight: 700; transform: rotate(4deg) translateX(10%); }
+#v17 .poem-container p:nth-of-type(19) { font-size: clamp(16.8pt, 4.4vw, 40.8pt); font-weight: 900; transform: rotate(-3deg) translateX(-9%); }
+#v17 .poem-container p:nth-of-type(20) { font-size: clamp(12pt, 2.6vw, 25.2pt); font-weight: 400; transform: rotate(4deg) translateX(12%); }
+#v17 .poem-container p:nth-of-type(21) { font-size: clamp(14.4pt, 3.6vw, 36pt); font-weight: 600; transform: rotate(-4.5deg) translateX(-10%); letter-spacing: -0.12pt; }
+#v17 .poem-container p:nth-of-type(22) { font-size: clamp(20.4pt, 5.2vw, 50.4pt); font-weight: 900; transform: rotate(3deg) translateX(9%); }
+#v17 hr {
+    width: 40%;
+    border: 0;
+    border-top: 0.75pt solid #000;
+    opacity: 0.35;
+    margin: 1.2vh auto;
+}
+#v17 .poem-container p:hover { z-index: 999; font-weight: 900; transform: scale(1.05) rotate(0deg); text-decoration: underline; }
+
+#v18 { background: white; color: black; font-family: 'Helvetica Neue', sans-serif; }
+#v18 main { background: white; }
+#v18 .poem-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 30pt 36pt;
+    overflow: hidden;
+}
+#v18 .poem-container p {
+    position: absolute;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: -0.12pt;
+    line-height: 1;
+    color: black;
+}
+#v18 hr { display: none; }
+
+#v18 .poem-container p:nth-of-type(1)  { top: 6%;  left: 12%; font-size: clamp(10.8pt, 1.8vw, 15.6pt); font-weight: 700; }
+#v18 .poem-container p:nth-of-type(2)  { top: 10%; left: 16%; font-size: clamp(12pt, 2.2vw, 19.2pt); transform: rotate(-2deg); }
+#v18 .poem-container p:nth-of-type(3)  { top: 14%; left: 20%; font-size: clamp(10.8pt, 1.9vw, 15.6pt); font-weight: 400; }
+#v18 .poem-container p:nth-of-type(4)  { top: 18%; left: 14%; font-size: clamp(12pt, 2.1vw, 18pt); transform: rotate(2deg); }
+#v18 .poem-container p:nth-of-type(5)  { top: 22%; left: 22%; font-size: clamp(10.2pt, 1.7vw, 14.4pt); font-weight: 300; }
+#v18 .poem-container p:nth-of-type(6)  { top: 26%; left: 18%; font-size: clamp(13.2pt, 2.4vw, 21.6pt); font-weight: 700; }
+
+#v18 .poem-container p:nth-of-type(7)  { top: 36%; left: 8%;  font-size: clamp(26.4pt, 7vw, 62.4pt); font-weight: 900; letter-spacing: -0.24pt; }
+#v18 .poem-container p:nth-of-type(8)  { top: 48%; left: 8%;  font-size: clamp(28.8pt, 7.5vw, 67.2pt); font-weight: 900; }
+#v18 .poem-container p:nth-of-type(9)  { top: 60%; left: 10%; font-size: clamp(11.4pt, 2vw, 16.8pt); font-weight: 500; }
+
+#v18 .poem-container p:nth-of-type(10) { top: 38%; right: 10%; font-size: clamp(10.8pt, 1.7vw, 14.4pt); font-weight: 400; }
+#v18 .poem-container p:nth-of-type(11) { top: 42%; right: 10%; font-size: clamp(10.8pt, 1.7vw, 14.4pt); font-weight: 400; }
+#v18 .poem-container p:nth-of-type(12) { top: 46%; right: 10%; font-size: clamp(10.8pt, 1.7vw, 14.4pt); font-weight: 400; }
+#v18 .poem-container p:nth-of-type(13) { top: 50%; right: 12%; font-size: clamp(10.8pt, 1.7vw, 14.4pt); font-weight: 400; }
+#v18 .poem-container p:nth-of-type(14) { top: 54%; right: 14%; font-size: clamp(10.8pt, 1.7vw, 14.4pt); font-weight: 400; }
+
+#v18 .poem-container p:nth-of-type(15) { bottom: 6%; left: 10%; font-size: clamp(16.8pt, 4.2vw, 36pt); font-weight: 800; transform: rotate(-90deg); transform-origin: left bottom; }
+#v18 .poem-container p:nth-of-type(16) { bottom: 12%; left: 14%; font-size: clamp(14.4pt, 3.6vw, 31.2pt); font-weight: 700; transform: rotate(-90deg); transform-origin: left bottom; }
+#v18 .poem-container p:nth-of-type(17) { bottom: 18%; left: 18%; font-size: clamp(12pt, 3vw, 26.4pt); font-weight: 600; transform: rotate(-90deg); transform-origin: left bottom; }
+#v18 .poem-container p:nth-of-type(18) { bottom: 24%; left: 22%; font-size: clamp(10.8pt, 2.6vw, 24pt); font-weight: 500; transform: rotate(-90deg); transform-origin: left bottom; }
+
+#v18 .poem-container p:nth-of-type(19) { bottom: 22%; right: 10%; font-size: clamp(12pt, 2.2vw, 19.2pt); font-weight: 600; }
+#v18 .poem-container p:nth-of-type(20) { bottom: 16%; right: 12%; font-size: clamp(12pt, 2.2vw, 19.2pt); font-weight: 600; }
+#v18 .poem-container p:nth-of-type(21) { bottom: 10%; right: 14%; font-size: clamp(12pt, 2.2vw, 19.2pt); font-weight: 600; }
+#v18 .poem-container p:nth-of-type(22) { bottom: 6%;  right: 16%; font-size: clamp(12pt, 2.2vw, 19.2pt); font-weight: 600; }
+
+#v19 .poem-container {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+#v19 .poem-container p {
+    font-family: 'Arial Black', sans-serif;
+    font-size: clamp(10.8pt, 2.1vh, 24pt);
+    line-height: 1;
+    color: #999;
+    white-space: nowrap;
+    opacity: 0.6;
+    transition: 0.3s ease;
+    margin: -0.1vh 0;
+    transform: translateX(-8%) rotate(-4deg);
+}
+#v19 .poem-container p:nth-child(even) { transform: translateX(10%) rotate(5deg); opacity: 0.4; }
+#v19 .poem-container p:nth-child(3n) { transform: translateX(-14%) rotate(-7deg); }
+#v19 .poem-container p:nth-child(4n) { transform: translateX(16%) rotate(8deg); }
+#v19 .poem-container p:hover {
+    color: black;
+    opacity: 1;
+    transform: scale(1.1) rotate(0deg);
+}
+
+#v20 .poem-container { justify-content: center; align-items: center; }
+#v20 .poem-container p {
+    display: block;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: clamp(10.8pt, 1.6vh, 14.4pt);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.96pt;
+    margin: 0.3vh 0;
+}
+#v20 .tremble {
+    display: inline-block;
+    animation: v20-tremble 0.12s infinite;
+}
+#v20 .tremble-strong {
+    display: inline-block;
+    animation: v20-tremble-strong 0.08s infinite;
+}
+
+@keyframes v20-tremble {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(0.75pt, -0.75pt); }
+    50% { transform: translate(-0.75pt, 0.75pt); }
+    75% { transform: translate(0.75pt, 0.75pt); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes v20-tremble-strong {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(1.5pt, -1.5pt); }
+    50% { transform: translate(-1.5pt, 1.5pt); }
+    75% { transform: translate(1.5pt, 1.5pt); }
+    100% { transform: translate(0, 0); }
+}

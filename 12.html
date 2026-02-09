@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Stones - Variation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="v12">
+
+    
+    <a class="home-link" href="index.html">&larr; home</a>
+<aside class="metadata">
+        <div class="rule-info">
+            <h3>R3: INTERACTION</h3>
+            <h4>#V12 - Diagonal Drifting</h4>
+            <p>The lines feature a progressive indentation that creates a diagonal drift. The interaction is signaled by the cursor and transition properties; the layout feels fluid, as if the text is floating away or waiting to be clicked to shift position.</p>
+        </div>
+    </aside>
+
+    <main>
+    <nav class="poem-nav">
+<a class="next" href="13.html">next &rarr;</a><a class="prev" href="11.html">&larr; previous</a>
+        
+    </nav>
+
+        <div class="poem-container">
+            <p>Once in a while</p>
+            <p>joy throws little stones at my window</p>
+            <p>it wants to let me know that it's waiting for me</p>
+            <p>but today I'm calm</p>
+            <p>I'd almost say even-tempered</p>
+            <p>I'm going to keep anxiety locked up</p>
+            <p>and then lie flat on my back</p>
+            <p>which is an elegant and comfortable position</p>
+            <p>for receiving and believing news</p>
+            <hr>
+            <p>who knows where I'll be next</p>
+            <p>or when my story will be taken into account</p>
+            <p>who knows what advice I still might come up with</p>
+            <p>and what easy way out I'll take not to follow it</p>
+            <hr>
+            <p>don't worry, I won't gamble with an eviction</p>
+            <p>I won't tattoo remembering with forgetting</p>
+            <p>there are many things left to say and suppress</p>
+            <p>and many grapes left to fill our mouths</p>
+            <hr>
+            <p>don't worry, I'm convinced</p>
+            <p>joy doesn't need to throw any more little stones</p>
+            <p>I'm coming</p>
+            <p>I'm coming</p>
+        </div>
+    </main>
+
+    <script>
+        const v12Lines = Array.from(document.querySelectorAll('#v12 .poem-container p'));
+        v12Lines.forEach((line) => {
+            line.addEventListener('mouseenter', () => {
+                v12Lines.forEach((item) => item.classList.remove('centered'));
+                line.classList.add('centered');
+            });
+        });
+    </script>
+
+</body>
+</html>
